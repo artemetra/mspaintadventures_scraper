@@ -19,7 +19,7 @@ for i in range(lower_bound, upper_bound+1):
         tmp1, tmp2 = _result_link
         result_link = tmp1 + tmp2
         result_image = requests.get(result_link, stream=True)
-        filename = '{}'.format(result_link[48:])
+        filename = result_link[48:].replace("/",'')
         with open(filename, 'wb') as out_file:
             shutil.copyfileobj(result_image.raw, out_file)
         print("File \"{}\" saved!".format(filename))
