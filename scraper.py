@@ -6,7 +6,7 @@ import os
 
 
 domain = "https://www.mspaintadventures.ru/?s=6&p="
-lower_bound = 1901
+lower_bound = 9406
 upper_bound = 10029
 flash = "&flash=1"
 
@@ -19,10 +19,11 @@ for i in range(lower_bound, upper_bound+1):
 
     gifs = BeautifulSoup(response, 'lxml').find_all('tr', class_='comic-images')
     result_link_raw = re.findall(r'(?<=src=\")(.+?)(?=\")|(?<=data=\")(.+?)(?=\")', str(gifs))
+    print(result_link_raw)
     for _result_link in result_link_raw:
         os.chdir(directory)
         tmp1, tmp2 = _result_link
-        result_link = tmp1 + tmp2
+        result_link = tmp1.strip() + tmp2.strip()
         result_image = requests.get(result_link, stream=True)
         filename = result_link[48:]
         if "/" in filename:
