@@ -16,4 +16,4 @@ for i in range(lower_bound, upper_bound+1):
     print(str(raw_text))
     f.write(str(raw_text))
     print(i)
-    f.close()
+f.close()
